@@ -13,7 +13,7 @@ local keybindings = {
   dap_step_over = '<F6>',
   dap_step_into = '<F7>',
   dap_step_out = '<F8>',
-  dap_terminate = '<F8>',
+  dap_terminate = '<F10>',
   dap_toggle_breakpoint = '<leader>b',
   cmp_scroll_docs_up = '<C-b>',
   cmp_scroll_docs_down = '<C-f>',
@@ -30,6 +30,8 @@ local keybindings = {
 	switch_window_above = '<leader>k',
 	switch_window_right = '<leader>l',
 	window_close = '<leader>c',
+	lsp_jump_to_def = '<CR>',
+	jump_back = '[',
 }
 
 -- Function to set keybindings
@@ -53,6 +55,8 @@ local function setKeybindings()
   vim.api.nvim_set_keymap('n', keybindings.switch_window_above, '<C-w>k', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.switch_window_right, '<C-w>l', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.window_close, ':close<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_jump_to_def, '<ESC>:lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.jump_back, '<C-o>', { noremap = true, silent = true })
 end
 
 -- Function to setup basic Vim configuration
@@ -269,6 +273,7 @@ Keybindings:
   - ]] .. keybindings.dap_step_over .. [[ : Step over during debugging (nvim-dap)
   - ]] .. keybindings.dap_step_into .. [[ : Step into during debugging (nvim-dap)
   - ]] .. keybindings.dap_step_out .. [[ : Step out during debugging (nvim-dap)
+  - ]] .. keybindings.dap_terminate .. [[ : Terminate debugging (nvim-dap)
   - ]] .. keybindings.dap_toggle_breakpoint .. [[ : Toggle breakpoint (nvim-dap)
   - ]] .. keybindings.split_vertically .. [[ : Split window vertically
   - ]] .. keybindings.split_horizontally .. [[ : Split window horizontally
@@ -307,4 +312,3 @@ onLoadMessage()
 setupVimConfig()
 initPlugins()
 setKeybindings()
-
