@@ -2,6 +2,7 @@
 local tabWidth = 2
 local lineNumbers = true
 local vimLeader = " " -- space
+local dapDebuggerCommand = "lldb-dap"
 
 -- Constants for keybindings
 local keybindings = {
@@ -183,7 +184,7 @@ local function initDebugger(use)
   dap.adapters.lldb = {
     id = 'lldb',
     type = 'executable',
-    command = '/usr/bin/lldb'
+    command = dapDebuggerCommand,
   }
 
   dap.configurations.cpp = {
@@ -205,6 +206,10 @@ local function initDebugger(use)
       },
     },
   }
+
+  vim.cmd [[
+    command! -nargs=0 DapDebugInfo lua print(vim.inspect(require('dap').adapters))
+  ]]
 end
 
 local function initTheme(use)
