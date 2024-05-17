@@ -20,9 +20,9 @@ local keybindings = {
   cmp_confirm = '<CR>',
   split_vertically = '<leader>v', -- Split window vertically
   split_horizontally = '<leader>h', -- Split window horizontally
-  switch_buffer_next = '<TAB>', -- Move to next buffer
-  switch_buffer_prev = '<S-TAB>', -- Move to previous buffer
-  switch_window_next = '<leader><TAB>', -- Move to next window split
+  switch_buffer_next = '<leader><TAB>', -- Move to next buffer
+  switch_buffer_prev = '<leader><S-TAB>', -- Move to previous buffer
+  switch_window_next = '<TAB>', -- Move to next window split
 }
 
 -- Function to set keybindings
@@ -215,7 +215,7 @@ local function initPlugins()
     initSyntaxHighlighting(use)
     initIntellisense(use)
     initFileFinder(use)
-    initTabs(use)
+    --initTabs(use)
     initDebugger(use)
 		initTheme(use)
 
