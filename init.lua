@@ -18,11 +18,16 @@ local keybindings = {
   cmp_complete = '<C-Space>',
   cmp_close = '<C-e>',
   cmp_confirm = '<CR>',
-  split_vertically = '<leader>v', -- Split window vertically
-  split_horizontally = '<leader>h', -- Split window horizontally
-  switch_buffer_next = '<leader><TAB>', -- Move to next buffer
-  switch_buffer_prev = '<leader><S-TAB>', -- Move to previous buffer
-  switch_window_next = '<TAB>', -- Move to next window split
+  split_vertically = '<leader>|',
+  split_horizontally = '<leader>-',
+  switch_buffer_next = '<TAB>',
+  switch_buffer_prev = '<S-TAB>',
+	buffer_close = '<leader>x',
+	switch_window_left = '<leader>h',
+	switch_window_below = '<leader>j',
+	switch_window_above = '<leader>k',
+	switch_window_right = '<leader>l',
+	window_close = '<leader>c',
 }
 
 -- Function to set keybindings
@@ -39,7 +44,12 @@ local function setKeybindings()
   vim.api.nvim_set_keymap('n', keybindings.split_horizontally, ':split<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.switch_buffer_next, ':bnext<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.switch_buffer_prev, ':bprevious<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', keybindings.switch_window_next, '<C-w>w', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.buffer_close, ':bd<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.switch_window_left, '<C-w>h', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.switch_window_below, '<C-w>j', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.switch_window_above, '<C-w>k', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.switch_window_right, '<C-w>l', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.window_close, ':close<CR>', { noremap = true, silent = true })
 end
 
 -- Function to setup basic Vim configuration
@@ -215,7 +225,7 @@ local function initPlugins()
     initSyntaxHighlighting(use)
     initIntellisense(use)
     initFileFinder(use)
-    --initTabs(use)
+    initTabs(use)
     initDebugger(use)
 		initTheme(use)
 
@@ -246,7 +256,11 @@ Keybindings:
   - ]] .. keybindings.split_horizontally .. [[ : Split window horizontally
   - ]] .. keybindings.switch_buffer_next .. [[ : Move to next buffer
   - ]] .. keybindings.switch_buffer_prev .. [[ : Move to previous buffer
-  - ]] .. keybindings.switch_window_next .. [[ : Move to next window split
+  - ]] .. keybindings.buffer_close .. [[ : Close the current buffer 
+  - ]] .. keybindings.switch_window_left .. [[ : Move to window split on the left
+  - ]] .. keybindings.switch_window_below .. [[ : Move to window split below
+  - ]] .. keybindings.switch_window_above .. [[ : Move to window split above
+  - ]] .. keybindings.switch_window_right .. [[ : Move to window split on the right
 
 Plugins:
   - nvim-tree.lua: File explorer to navigate your project directory.
