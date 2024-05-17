@@ -10,9 +10,10 @@ local keybindings = {
   telescope_find_files = '<leader>ff',
   telescope_live_grep = '<leader>fg',
   dap_continue = '<F5>',
-  dap_step_over = '<F10>',
-  dap_step_into = '<F11>',
-  dap_step_out = '<F12>',
+  dap_step_over = '<F6>',
+  dap_step_into = '<F7>',
+  dap_step_out = '<F8>',
+  dap_terminate = '<F8>',
   dap_toggle_breakpoint = '<leader>b',
   cmp_scroll_docs_up = '<C-b>',
   cmp_scroll_docs_down = '<C-f>',
@@ -40,6 +41,7 @@ local function setKeybindings()
   vim.api.nvim_set_keymap('n', keybindings.dap_step_over, ':lua require"dap".step_over()<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.dap_step_into, ':lua require"dap".step_into()<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.dap_step_out, ':lua require"dap".step_out()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.dap_terminate, ':lua require"dap".terminate()<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.dap_toggle_breakpoint, ':lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.split_vertically, ':vsplit<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.split_horizontally, ':split<CR>', { noremap = true, silent = true })
@@ -179,7 +181,18 @@ local function initDebugger(use)
 
   local dap = require('dap')
   local dapui = require('dapui')
+
   dapui.setup()
+
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+  end
 
   dap.adapters.lldb = {
     id = 'lldb',
