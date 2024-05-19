@@ -24,14 +24,25 @@ local keybindings = {
   split_horizontally = '<leader>-',
   switch_buffer_next = '<TAB>',
   switch_buffer_prev = '<S-TAB>',
-	buffer_close = '<leader>x',
-	switch_window_left = '<leader>h',
-	switch_window_below = '<leader>j',
-	switch_window_above = '<leader>k',
-	switch_window_right = '<leader>l',
-	window_close = '<leader>c',
-	lsp_jump_to_def = '<CR>',
-	jump_back = '[',
+  buffer_close = '<leader>x',
+  switch_window_left = '<leader>h',
+  switch_window_below = '<leader>j',
+  switch_window_above = '<leader>k',
+  switch_window_right = '<leader>l',
+  window_close = '<leader>c',
+  lsp_jump_to_def = 'gd',
+  lsp_references = 'gr',
+  lsp_implementation = 'gi',
+  lsp_hover = '<leader>h',
+  lsp_signature_help = '<C-k>',
+  lsp_rename = '<leader>rn',
+  lsp_code_action = '<leader>ca',
+  lsp_format = '<leader>f',
+  lsp_show_line_diagnostics = '<leader>d',
+  lsp_prev_diagnostic = '[d',
+  lsp_next_diagnostic = ']d',
+  jump_back = '[',
+  jump_forward = '<]',
 }
 
 -- Function to set keybindings
@@ -55,8 +66,19 @@ local function setKeybindings()
   vim.api.nvim_set_keymap('n', keybindings.switch_window_above, '<C-w>k', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.switch_window_right, '<C-w>l', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.window_close, ':close<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', keybindings.lsp_jump_to_def, '<ESC>:lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_jump_to_def, '<Cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_references, '<Cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_implementation, '<Cmd>lua vim.lsp.buf.implementation()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_hover, '<Cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_signature_help, '<Cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_rename, '<Cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_code_action, '<Cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_format, '<Cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_show_line_diagnostics, '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_prev_diagnostic, '<Cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.lsp_next_diagnostic, '<Cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', keybindings.jump_back, '<C-o>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', keybindings.jump_forward, '<C-i>', { noremap = true, silent = true })
 end
 
 -- Function to setup basic Vim configuration
@@ -138,21 +160,36 @@ local function initIntellisense(use)
     }
   })
 
-	vim.diagnostic.config({
-		virtual_text = false, -- Disable inline diagnostics
-		signs = true,         -- Keep signs in the sign column
-		underline = true,     -- Keep underlining of diagnostics
-		update_in_insert = false, -- Disable updates in insert mode
-		severity_sort = true,
-	})
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+  })
 
-	-- Ensure this is added after setting up the LSP server
-	require('lspconfig').clangd.setup {
-		capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-		on_attach = function(client, bufnr)
-			vim.diagnostic.disable(bufnr) -- Disable diagnostics for this buffer
-		end,
-	}
+  -- Clangd setup
+  nvim_lsp.clangd.setup {
+    cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed" },
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function(client, bufnr)
+      -- Custom keybindings for LSP functionality
+      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      local opts = { noremap=true, silent=true }
+
+      buf_set_keymap('n', keybindings.lsp_jump_to_def, '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_references, '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_implementation, '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_hover, '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_signature_help, '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_rename, '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_code_action, '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_format, '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_show_line_diagnostics, '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_prev_diagnostic, '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+      buf_set_keymap('n', keybindings.lsp_next_diagnostic, '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    end,
+  }
 end
 
 -- Function to initialize file finder
@@ -230,11 +267,11 @@ local function initDebugger(use)
 end
 
 local function initTheme(use)
-		use { "ellisonleao/gruvbox.nvim" }
-		use { "projekt0n/github-nvim-theme" }
-    vim.o.background = "dark"
-		-- available: gruvbox | github_dark
-		vim.cmd([[colorscheme github_dark]])
+  use { "ellisonleao/gruvbox.nvim" }
+  use { "projekt0n/github-nvim-theme" }
+  vim.o.background = "dark"
+  -- available: gruvbox | github_dark
+  vim.cmd([[colorscheme github_dark]])
 end
 
 -- Function to initialize plugins
@@ -249,7 +286,7 @@ local function initPlugins()
     initFileFinder(use)
     initTabs(use)
     initDebugger(use)
-		initTheme(use)
+    initTheme(use)
 
     if packer_bootstrap then
       require('packer').sync()
@@ -284,6 +321,19 @@ Keybindings:
   - ]] .. keybindings.switch_window_below .. [[ : Move to window split below
   - ]] .. keybindings.switch_window_above .. [[ : Move to window split above
   - ]] .. keybindings.switch_window_right .. [[ : Move to window split on the right
+  - ]] .. keybindings.lsp_jump_to_def .. [[ : Jump to definition (LSP)
+  - ]] .. keybindings.lsp_references .. [[ : Find references (LSP)
+  - ]] .. keybindings.lsp_implementation .. [[ : Go to implementation (LSP)
+  - ]] .. keybindings.lsp_hover .. [[ : Hover documentation (LSP)
+  - ]] .. keybindings.lsp_signature_help .. [[ : Signature help (LSP)
+  - ]] .. keybindings.lsp_rename .. [[ : Rename symbol (LSP)
+  - ]] .. keybindings.lsp_code_action .. [[ : Code actions (LSP)
+  - ]] .. keybindings.lsp_format .. [[ : Format code (LSP)
+  - ]] .. keybindings.lsp_show_line_diagnostics .. [[ : Show diagnostics for the current line (LSP)
+  - ]] .. keybindings.lsp_prev_diagnostic .. [[ : Jump to previous diagnostic (LSP)
+  - ]] .. keybindings.lsp_next_diagnostic .. [[ : Jump to next diagnostic (LSP)
+  - ]] .. keybindings.jump_back .. [[ : Jump back to previous location
+  - ]] .. keybindings.jump_forward .. [[ : Jump forward to newest location
 
 Plugins:
   - nvim-tree.lua: File explorer to navigate your project directory.
@@ -312,3 +362,4 @@ onLoadMessage()
 setupVimConfig()
 initPlugins()
 setKeybindings()
+
