@@ -1,4 +1,4 @@
 require("nl.remap")
 require("nl.packer")
 
-print("hello from nl")
+print("nl/init.lua")

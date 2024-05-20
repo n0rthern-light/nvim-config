@@ -1,3 +1,3 @@
 require("nl")
 
-print("hello world");
+print("init.lua")

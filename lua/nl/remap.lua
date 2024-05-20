@@ -10,3 +10,7 @@ vim.opt.softtabstop = tabWidth
 vim.opt.shiftwidth = tabWidth
 vim.wo.number = lineNumbers
 
+-- set :cd to current dir
+vim.api.nvim_create_autocmd("VimEnter", {
+  command = "silent! lcd %:p:h"
+})
