@@ -1,4 +1,4 @@
-local keymap = require('nl.keymap')
+local keymap = require("nl.keymap")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
