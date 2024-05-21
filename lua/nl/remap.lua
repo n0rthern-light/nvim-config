@@ -6,6 +6,9 @@ local vimLeader = " "
 vim.g.mapleader = vimLeader
 vim.g.maplocalleader = vimLeader
 
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+
 vim.opt.clipboard = 'unnamedplus' -- yank to clipboard
 vim.opt.tabstop = tabWidth
 vim.opt.softtabstop = tabWidth
