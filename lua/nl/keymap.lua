@@ -34,6 +34,7 @@ local keybindings = {
 	toggle_undo_tree = '<leader>u',
 	toggle_git_manager = '<leader>gs',
 	uber_paste = '<leader>p',
+	toggle_darkmode = '<leader>dm',
 }
 
 return keybindings
