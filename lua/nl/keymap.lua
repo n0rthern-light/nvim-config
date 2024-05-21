@@ -16,6 +16,7 @@ local keybindings = {
 	lsp_jump_to_def = 'gd',
 	lsp_jump_to_impl = 'gi',
 	lsp_list_xrefs = 'lx',
+	lsp_rename_symbol = 'rs',
 	navigate_jump_back = '[',
 	navigate_jump_forward = ']',
 	buffer_list_add = '<leader>a',
