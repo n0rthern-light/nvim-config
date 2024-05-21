@@ -1,8 +1,10 @@
+require('catppuccin').setup()
 local keymap = require("nl.keymap")
 
-local themeDark = "rose-pine"
-local themeLight = "gruvbox"
+local themeDark = "catppuccin"
+local themeLight = "catppuccin"
 local isDark = true
+
 
 function ColorMyPencils(color)
 	color = color or themeDark
@@ -13,11 +15,13 @@ function ColorMyPencils(color)
 end
 
 function Dark()
+	vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
 	vim.o.background = "dark"
 	ColorMyPencils(themeDark)
 end
 
 function Light()
+	vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
 	vim.o.background = "light"
 	ColorMyPencils(themeLight)
 end
