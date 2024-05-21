@@ -8,7 +8,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'eslint', 'lua_ls', 'phpactor', 'html'},
+	ensure_installed = {'clangd', 'eslint', 'lua_ls', 'intelephense', 'html'},
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})
