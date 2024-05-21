@@ -1,1 +1,3 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+local keymap = require('nl.keymap')
+
+vim.keymap.set("n", keymap.toggle_git_manager, vim.cmd.Git)
