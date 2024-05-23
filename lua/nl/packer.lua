@@ -43,5 +43,7 @@ return require('packer').startup(function(use)
 	use('mfussenegger/nvim-dap')
 	use('rcarriga/nvim-dap-ui')
 	use('nvim-neotest/nvim-nio')
+
+    use({ 'Pocco81/auto-save.nvim',  as = 'auto-save' })
 end)
 

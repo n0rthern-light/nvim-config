@@ -1,8 +1,9 @@
 local keymap = require('nl.keymap')
-local tabWidth = 2
+local tabWidth = 4
 local lineNumbers = true
 local vimLeader = " "
 
+vim.cmd("language en_US")
 vim.g.mapleader = vimLeader
 vim.g.maplocalleader = vimLeader
 
@@ -10,6 +11,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 vim.opt.clipboard = 'unnamedplus' -- yank to clipboard
+vim.opt.expandtab = true
 vim.opt.tabstop = tabWidth
 vim.opt.softtabstop = tabWidth
 vim.opt.shiftwidth = tabWidth
