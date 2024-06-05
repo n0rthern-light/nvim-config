@@ -34,3 +34,11 @@ vim.keymap.set('n', keymap.switch_window_right, '<C-w>l', { noremap = true, sile
 
 vim.keymap.set("x", keymap.uber_paste, "\"_dP")
 
+vim.diagnostic.config({
+  underline = {
+    severity = { min = vim.diagnostic.severity.ERROR }
+  },
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.ERROR }
+  }
+})
