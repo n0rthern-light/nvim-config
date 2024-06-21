@@ -31,6 +31,7 @@ vim.keymap.set('n', keymap.switch_window_left, '<C-w>h', { noremap = true, silen
 vim.keymap.set('n', keymap.switch_window_below, '<C-w>j', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.switch_window_above, '<C-w>k', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.switch_window_right, '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', keymap.toggle_gitblame, ':BlameLineToggle<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("x", keymap.uber_paste, "\"_dP")
 

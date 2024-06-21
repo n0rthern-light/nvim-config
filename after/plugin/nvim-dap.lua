@@ -51,4 +51,5 @@ vim.api.nvim_set_keymap('n', keymap.dap_step_into, ':lua require"dap".step_into(
 vim.api.nvim_set_keymap('n', keymap.dap_step_out, ':lua require"dap".step_out()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', keymap.dap_terminate, ':lua require"dap".terminate()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', keymap.dap_toggle_breakpoint, ':lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', keymap.dap_clear_all_breakpoints, ':lua require"dap".clear_breakpoints()<CR>', { noremap = true, silent = true })
 

@@ -8,6 +8,7 @@ local keybindings = {
 	dap_step_out = '<F8>',
 	dap_terminate = '<F10>',
 	dap_toggle_breakpoint = '<leader>b',
+	dap_clear_all_breakpoints = '<leader>cb',
 	lsp_cmp_select_prev = '<C-p>',
 	lsp_cmp_select_next = '<C-n>',
 	lsp_cmp_complete = '<C-Space>',
@@ -35,6 +36,7 @@ local keybindings = {
 	toggle_git_manager = '<leader>gs',
 	uber_paste = '<leader>p',
 	toggle_darkmode = '<leader>dm',
+	toggle_gitblame = '<leader>gb',
 }
 
 return keybindings
