@@ -3,7 +3,7 @@ local keymap = require("nl.keymap")
 
 local themeDark = "catppuccin"
 local themeLight = "catppuccin"
-local isDark = true
+local isDark = false
 
 
 function ColorMyPencils(color)
@@ -39,4 +39,8 @@ end
 
 vim.keymap.set("n", keymap.toggle_darkmode, function() ThemeToggle() end, { noremap = true, silent = true })
 
-Dark()
+if (isDark) then
+    Dark()
+else
+    Light()
+end
