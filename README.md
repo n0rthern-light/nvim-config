@@ -14,6 +14,13 @@ Call to install required plugins:
 :PackerInstall
 ```
 
+Call to update everything:
+```
+:PackerUpdate
+:MasonUpdate
+:TSUpdate
+```
+
 Good tmux config to manage nvim instances:
 ```zsh
 set -g default-terminal "screen-256color"
