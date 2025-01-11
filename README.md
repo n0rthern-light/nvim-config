@@ -21,7 +21,8 @@ Call to update everything:
 :TSUpdate
 ```
 
-Good tmux config to manage nvim instances:
+### Good tmux config to manage nvim instances
+Paste into `~/.tmux.conf`
 ```zsh
 set -g default-terminal "screen-256color"
 set -g mouse on
