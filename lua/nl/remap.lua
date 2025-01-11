@@ -3,7 +3,6 @@ local tabWidth = 4
 local lineNumbers = true
 local vimLeader = " "
 
-vim.cmd("language en_US")
 vim.g.mapleader = vimLeader
 vim.g.maplocalleader = vimLeader
 
