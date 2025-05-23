@@ -31,6 +31,9 @@ vim.keymap.set('n', keymap.switch_window_below, '<C-w>j', { noremap = true, sile
 vim.keymap.set('n', keymap.switch_window_above, '<C-w>k', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.switch_window_right, '<C-w>l', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.toggle_gitblame, ':BlameLineToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', keymap.replace_in_files, function()
+  require('spectre').open()
+end, { desc = "Open Spectre" })
 
 vim.keymap.set("x", keymap.uber_paste, "\"_dP")
 

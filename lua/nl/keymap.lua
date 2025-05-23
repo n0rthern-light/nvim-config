@@ -2,6 +2,7 @@ local keybindings = {
 	nvim_tree_toggle = '<leader>e',
 	telescope_find_files = '<leader>ff',
 	telescope_live_grep = '<leader>fg',
+	replace_in_files = '<leader>fr',
 	dap_continue = '<F5>',
 	dap_step_over = '<F6>',
 	dap_step_into = '<F7>',
