@@ -15,18 +15,24 @@ sudo apt install -y nodejs python3 python3-pip python3-venv
 git clone https://github.com/n0rthern-light/nvim-config.git ~/.config/nvim
 ```
 
-4. Call to install required plugins:
+4. Install packer
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
+5. Call to install required plugins:
 ```
 :PackerInstall
 ```
 
-5. Call to update everything:
+6. Call to update everything:
 ```
 :PackerUpdate
 :MasonUpdate
 :TSUpdate
 ```
-6. Install nerdfonts
+7. Install nerdfonts
 https://www.nerdfonts.com/font-downloads
 
 ### Good tmux config to manage nvim instances
