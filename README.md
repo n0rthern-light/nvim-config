@@ -4,22 +4,30 @@
 
 ### How to start
 
-Copy `init.lua` to:
+1. Install newest version of `Neovim`. Best to build from source, because the one from apt might be a bit old.
+2. Install required dependencies like python, node and npm.
 ```
-~/.config/nvim/init.lua
+sudo apt install -y nodejs python3 python3-pip python3-venv
 ```
 
-Call to install required plugins:
+3. Clone the repo to `~/.config/nvim`
+```
+git clone https://github.com/n0rthern-light/nvim-config.git ~/.config/nvim
+```
+
+4. Call to install required plugins:
 ```
 :PackerInstall
 ```
 
-Call to update everything:
+5. Call to update everything:
 ```
 :PackerUpdate
 :MasonUpdate
 :TSUpdate
 ```
+6. Install nerdfonts
+https://www.nerdfonts.com/font-downloads
 
 ### Good tmux config to manage nvim instances
 Paste into `~/.tmux.conf`
