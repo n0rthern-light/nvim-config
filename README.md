@@ -7,7 +7,7 @@
 1. Install newest version of `Neovim`. Best to build from source, because the one from apt might be a bit old.
 2. Install required dependencies like python, node and npm.
 ```
-sudo apt install -y nodejs python3 python3-pip python3-venv
+sudo apt install -y nodejs npm python3 python3-pip python3-venv
 ```
 
 3. Clone the repo to `~/.config/nvim`
