@@ -8,7 +8,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'eslint', 'lua_ls', 'intelephense', 'html', 'tsserver', 'vuels', 'cssls', 'css_variables', 'pylsp'},
+	ensure_installed = {'clangd', 'eslint', 'lua_ls', 'intelephense', 'html', 'vuels', 'cssls', 'css_variables', 'pylsp'},
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})
@@ -17,6 +17,11 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
+
+require('lspconfig').clangd.setup {
+  cmd = { "clangd", "--background-index" },
+}
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
