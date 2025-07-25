@@ -81,7 +81,8 @@ set -g status-style "bg=#375bc7"
 ```
 
 ### AI Agent
-You can use AI Agents since the gp plugin is configured https://github.com/Robitx/gp.nvim
+You can use AI Agents thanks to [gp plugin](https://github.com/Robitx/gp.nvim)
+
 Current configuration uses Google AI models:
 - gemini-2.5-pro
 - gemini-2.5-flash
