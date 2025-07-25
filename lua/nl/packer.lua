@@ -37,6 +37,16 @@ return require('packer').startup(function(use)
 		}
 	}
 
+    use {
+        "robitx/gp.nvim",
+        config = function()
+            local conf = require("nl.ai")
+            require("gp").setup(conf)
+
+            -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+        end,
+    }
+
 	use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
