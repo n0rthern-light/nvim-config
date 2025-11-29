@@ -38,6 +38,7 @@ local keybindings = {
 	uber_paste = '<leader>p',
 	toggle_darkmode = '<leader>dm',
 	toggle_gitblame = '<leader>gb',
+	toggle_diagnostic = '<leader>dg',
 }
 
 return keybindings

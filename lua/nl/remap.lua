@@ -1,4 +1,5 @@
 local keymap = require('nl.keymap')
+local diagnostics_toggle = require('nl.diagnostics')
 local tabWidth = 4
 local lineNumbers = true
 local vimLeader = " "
@@ -34,14 +35,5 @@ vim.keymap.set('n', keymap.toggle_gitblame, ':BlameLineToggle<CR>', { noremap = 
 vim.keymap.set('n', keymap.replace_in_files, function()
   require('spectre').open()
 end, { desc = "Open Spectre" })
-
-vim.keymap.set("x", keymap.uber_paste, "\"_dP")
-
-vim.diagnostic.config({
-  underline = {
-    severity = { min = vim.diagnostic.severity.ERROR }
-  },
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.ERROR }
-  }
-})
+vim.keymap.set("x", keymap.uber_paste, "\"_dP") -- paste without loosing yanked stuff
+vim.keymap.set("n", "<leader>dg", diagnostics_toggle, { desc = "Toggle diagnostics", noremap = true, silent = true })

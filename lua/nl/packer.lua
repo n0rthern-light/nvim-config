@@ -17,6 +17,10 @@ return require('packer').startup(function(use)
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
 	use('tpope/vim-fugitive')
+    use {
+        'mg979/vim-visual-multi',
+        branch = 'master'
+    }
 
     use {
         'nvim-pack/nvim-spectre',
@@ -36,16 +40,6 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
-
-    use {
-        "robitx/gp.nvim",
-        config = function()
-            local conf = require("nl.ai")
-            require("gp").setup(conf)
-
-            -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
-        end,
-    }
 
 	use {
     'kyazdani42/nvim-tree.lua',

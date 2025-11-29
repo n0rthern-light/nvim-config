@@ -17,11 +17,6 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
-
-require('lspconfig').clangd.setup {
-  cmd = { "clangd", "--background-index" },
-}
-
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
