@@ -3,7 +3,7 @@ local keymap = require("nl.keymap")
 
 local themeDark = "catppuccin"
 local themeLight = "catppuccin"
-local isDark = false
+local isDark = true
 
 
 function ColorMyPencils(color)

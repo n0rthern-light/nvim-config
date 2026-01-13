@@ -16,6 +16,8 @@ vim.opt.tabstop = tabWidth
 vim.opt.softtabstop = tabWidth
 vim.opt.shiftwidth = tabWidth
 vim.wo.number = lineNumbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.api.nvim_create_autocmd("VimEnter", {
   command = "silent! lcd %:p:h"
