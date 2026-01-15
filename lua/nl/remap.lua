@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   command = "silent! lcd %:p:h"
 })
 
+vim.keymap.set('n', keymap.clear_search, ':nohlsearch<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.navigate_jump_back, '<C-o>', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.navigate_jump_forward, '<C-i>', { noremap = true, silent = true })
 vim.keymap.set('n', keymap.split_vertically, ':vsplit<CR>', { noremap = true, silent = true })

@@ -1,4 +1,5 @@
 local keybindings = {
+    clear_search = '<Esc>',
 	nvim_tree_toggle = '<leader>e',
 	telescope_find_files = '<leader>ff',
 	telescope_live_grep = '<leader>fg',
