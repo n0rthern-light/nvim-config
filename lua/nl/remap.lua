@@ -40,3 +40,4 @@ vim.keymap.set('n', keymap.replace_in_files, function()
 end, { desc = "Open Spectre" })
 vim.keymap.set("x", keymap.uber_paste, "\"_dP") -- paste without loosing yanked stuff
 vim.keymap.set("n", "<leader>dg", diagnostics_toggle, { desc = "Toggle diagnostics", noremap = true, silent = true })
+vim.keymap.set("t", "<C-w>N", "<C-\\><C-n>", { noremap = true, silent = true }) -- exit terminal mode
